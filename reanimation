@@ -1,3 +1,6 @@
+if _G.mrbeast_reanim then return end
+_G.mrbeast_reanim = true
+
 local run_service,plrs,workspace,starter_gui = game:GetService('RunService'),game:GetService('Players'),game:GetService('Workspace'),game:GetService('StarterGui')
 
 local plr = plrs.LocalPlayer
@@ -116,6 +119,8 @@ local function on_reset()
     print('Disconnected: ' ..tostring(#loops) ..' loops.')
 
     starter_gui:SetCore('ResetButtonCallback' ,true)
+
+    _G.mrbeast_reanim = false
 
     wait(1)
     disconnecting = false
