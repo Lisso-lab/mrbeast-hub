@@ -1,0 +1,245 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local TextButton_3 = Instance.new("TextButton")
+local TextButton_4 = Instance.new("TextButton")
+local TextButton_5 = Instance.new("TextButton")
+local TextButton_6 = Instance.new("TextButton")
+local TextButton_7 = Instance.new("TextButton")
+local TextButton_8 = Instance.new("TextButton")
+local TextButton_9 = Instance.new("TextButton")
+local TextButton_10 = Instance.new("TextButton")
+local TextButton_11 = Instance.new("TextButton")
+local ImageLabel = Instance.new("ImageLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(0, 172, 210)
+Frame.Position = UDim2.new(0.123649448, 0, 0.179034159, 0)
+Frame.Size = UDim2.new(0, 626, 0, 544)
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(0, 208, 249)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(-0.00212717056, 0, -0.107367158, 0)
+TextLabel.Size = UDim2.new(0, 399, 0, 80)
+TextLabel.Font = Enum.Font.Bodoni
+TextLabel.Text = "Mr beast hub"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 55.000
+TextLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextWrapped = true
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Position = UDim2.new(0.0782747567, 0, 0.115808822, 0)
+TextButton.Size = UDim2.new(0, 200, 0, 50)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "lag switch on"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+
+TextButton.MouseButton1Click:Connect(function()
+    if lagswitch then return end
+
+    lagswitch = true
+    
+    print('Enabled quandle dingle lagswitch')
+
+    while lagswitch and wait(.1) do
+        settings().Network.IncomingReplicationLag = 1000
+    end
+
+    settings().Network.IncomingReplicationLag = 0
+end)
+
+TextButton_2.Parent = Frame
+TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_2.Position = UDim2.new(0.0191693269, 0, 0.266544104, 0)
+TextButton_2.Size = UDim2.new(0, 200, 0, 50)
+TextButton_2.Font = Enum.Font.SourceSans
+TextButton_2.Text = "esp"
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextSize = 14.000
+TextButton_7.MouseButton1Down:connect(function()
+local Settings = {
+	['Material'] = Enum.Material.Neon, -- Material
+	['Color'] = Color3.fromRGB(0,255,255), -- Color
+	['Transparency'] = 0.7 -- 0 to 1 Transparency
+}
+
+local ScreenGui = Instance.new('ScreenGui', game.CoreGui) -- Create screengui
+ScreenGui.IgnoreGuiInset = true
+
+local ViewportFrame = Instance.new('ViewportFrame', ScreenGui) -- Create viewport and define properties
+ViewportFrame.CurrentCamera = workspace.CurrentCamera
+ViewportFrame.Size = UDim2.new(1,0,1,0)
+ViewportFrame.BackgroundTransparency = 1
+ViewportFrame.ImageTransparency = Settings.Transparency
+
+local Chasms = {} -- Array for storing parts
+
+function generateChasm(player) -- functions that generates chasms for the player specififed
+	local Character = workspace:FindFirstChild(player.Name)
+	
+	if Character then
+		for _,Part in pairs(Character:GetChildren()) do
+			if Part:IsA('Part') or Part:IsA('MeshPart') then
+				local Chasm = Part:Clone()
+				
+				for _,Child in pairs(Chasm:GetChildren()) do
+					if Child:IsA('Decal') then
+						Child:Destroy()
+					end
+				end
+				
+				Chasm.Parent = ViewportFrame
+				Chasm.Material = Settings.Material
+				Chasm.Color = Settings.Color
+				Chasm.Anchored = true
+				
+				table.insert(Chasms, Chasm)
+			end
+		end
+	end
+end
+
+function clearChasms() -- remove all chasms
+	for _,Chasm in pairs(Chasms) do
+		Chasm:Destroy()
+	end
+	
+	Chasms = {}
+end
+
+while game:GetService('RunService').RenderStepped:Wait() do -- loop this process
+	clearChasms()
+	
+	for _,Player in pairs(game:GetService('Players'):GetPlayers()) do
+		if Player ~= game:GetService('Players').LocalPlayer then
+			generateChasm(Player)
+		end
+	end
+end
+end)
+
+
+TextButton_3.Parent = Frame
+TextButton_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_3.Position = UDim2.new(0.138977632, 0, 0.472426474, 0)
+TextButton_3.Size = UDim2.new(0, 200, 0, 50)
+TextButton_3.Font = Enum.Font.SourceSans
+TextButton_3.Text = "reanima"
+TextButton_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_3.TextSize = 14.000
+TextButton_3.MouseButton1Down:connect(function()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Lisso-lab/mrbeast-hub/main/reanimation') ,true))()
+end)
+
+TextButton_4.Parent = Frame
+TextButton_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_4.Position = UDim2.new(0.05111821, 0, 0.60661763, 0)
+TextButton_4.Size = UDim2.new(0, 200, 0, 50)
+TextButton_4.Font = Enum.Font.SourceSans
+TextButton_4.Text = "hathub"
+TextButton_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_4.TextSize = 14.000
+
+TextButton_5.Parent = Frame
+TextButton_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_5.Position = UDim2.new(0.10223642, 0, 0.801470578, 0)
+TextButton_5.Size = UDim2.new(0, 200, 0, 50)
+TextButton_5.Font = Enum.Font.SourceSans
+TextButton_5.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_5.TextSize = 14.000
+
+TextButton_6.Parent = Frame
+TextButton_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_6.Position = UDim2.new(0.498402566, 0, 0.672794104, 0)
+TextButton_6.Size = UDim2.new(0, 200, 0, 107)
+TextButton_6.Font = Enum.Font.SourceSans
+TextButton_6.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_6.TextSize = 14.000
+
+TextButton_7.Parent = Frame
+TextButton_7.BackgroundColor3 = Color3.fromRGB(255, 2, 2)
+TextButton_7.Position = UDim2.new(0.680511177, 0, 0, 0)
+TextButton_7.Size = UDim2.new(0, 200, 0, 50)
+TextButton_7.Font = Enum.Font.SourceSans
+TextButton_7.Text = "close"
+TextButton_7.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_7.TextSize = 14.000
+TextButton_7.MouseButton1Down:connect(function()
+    Frame.Visible = false
+end)
+
+
+TextButton_8.Parent = Frame
+TextButton_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_8.Position = UDim2.new(0.54153353, 0, 0.229779407, 0)
+TextButton_8.Size = UDim2.new(0, 200, 0, 50)
+TextButton_8.Font = Enum.Font.SourceSans
+TextButton_8.Text = "btool"
+TextButton_8.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_8.TextSize = 14.000
+TextButton_7.MouseButton1Down:connect(function()
+Instance.new("HopperBin", game.Players.LocalPlayer.Backpack).BinType = 4
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20
+end)
+
+TextButton_9.Parent = Frame
+TextButton_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_9.Position = UDim2.new(0.498402536, 0, 0.431985259, 0)
+TextButton_9.Size = UDim2.new(0, 200, 0, 50)
+TextButton_9.Font = Enum.Font.SourceSans
+TextButton_9.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_9.TextSize = 14.000
+
+TextButton_10.Parent = Frame
+TextButton_10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_10.Position = UDim2.new(0.634185314, 0, 0.321691155, 0)
+TextButton_10.Size = UDim2.new(0, 200, 0, 50)
+TextButton_10.Font = Enum.Font.SourceSans
+TextButton_10.Text = "dex"
+TextButton_10.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_10.TextSize = 14.000
+TextButton_7.MouseButton1Down:connect(function()
+loadstring(game:GetObjects("rbxassetid://418957341")[1].Source)()
+-- Discord: https://discord.gg/UGVxEQNWaW
+end)
+
+TextButton_11.Parent = Frame
+TextButton_11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_11.Position = UDim2.new(0.488817871, 0, 0.115808815, 0)
+TextButton_11.Size = UDim2.new(0, 200, 0, 50)
+TextButton_11.Font = Enum.Font.SourceSans
+TextButton_11.Text = "lag switch off"
+TextButton_11.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_11.TextSize = 14.000
+
+TextButton_11.MouseButton1Click:Connect(function()
+    if lagswitch then
+        lagswitch = false
+
+        print('Disabled quandle dingle lagswitch')
+    end
+end)
+
+ImageLabel.Parent = Frame
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.Position = UDim2.new(0.434504807, 0, -0.200367659, 0)
+ImageLabel.Size = UDim2.new(0, 371, 0, 109)
+ImageLabel.Image = "rbxassetid://8689842178"
+
+
